@@ -128,6 +128,10 @@ const MovieInformation = () => {
     }
   };
 
+  const navigateToReviews = () => {
+    navigate(`/movie/${id}/reviews`);
+  };
+
   if (loading) return <div className="movie-info-loading">Loading...</div>;
   if (!movie) return <div className="movie-info-loading">Movie not found</div>;
 
@@ -162,6 +166,11 @@ const MovieInformation = () => {
 
           <button onClick={handleRateMovie} className="rate-btn">
             {existingRating ? 'Change Rating' : 'Rate Movie'}
+          </button>
+          
+          {/* New View Reviews Button */}
+          <button onClick={navigateToReviews} className="reviews-btn">
+            View All Reviews
           </button>
         </div>
 

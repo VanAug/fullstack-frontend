@@ -2,6 +2,8 @@
 const BASE_URL = import.meta.env.VITE_TMDB_BASE_URL;
 // @ts-ignore
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+// @ts-ignore
+const BACKEND_BASE_URL = 'https://fullstack-backend-hc6q.onrender.com'
 
 // Movie Lists
 export async function fetchNowPlaying(page = 1) {
@@ -58,4 +60,10 @@ export async function searchMovies(query) {
   const res = await fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}&language=en-US`);
   const data = await res.json();
   return data.results;
+}
+
+// NEW: Fetch movie reviews from our backend
+export async function fetchMovieReviews(tmdbMovieId) {
+  const res = await fetch(`${BACKEND_BASE_URL}/ratings/movie/${tmdbMovieId}`);
+  return res.json();
 }
